@@ -27,7 +27,7 @@ a{color:var(--blue);text-underline-offset:3px}
 .app-shell{min-height:100vh;display:grid;grid-template-columns:280px minmax(0,1fr)}
 .sidebar{position:sticky;top:0;height:100vh;background:linear-gradient(180deg,#17202a,#202c36);color:#f7f1e8;padding:1.2rem 1rem;display:flex;flex-direction:column;gap:1rem;z-index:10}
 .brand{border-bottom:1px solid rgba(255,255,255,.16);padding:.4rem .5rem 1rem}
-.brand small{display:block;letter-spacing:.12em;text-transform:uppercase;color:#d4c8b9;font-family:system-ui,sans-serif;font-size:.72rem}
+.brand small{display:block;letter-spacing:.12em;text-transform:uppercase;color:#d4c8b9;font-family:system-ui,sans-serif;font-size:.72rem}.school-index{text-transform:none}
 .brand strong{display:block;font-size:1.15rem;line-height:1.25;margin-top:.35rem}
 .progress-box{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:.75rem}
 .progress-meta{display:flex;justify-content:space-between;font-family:system-ui,sans-serif;font-size:.78rem;color:#e6ddd0;margin-bottom:.45rem}
@@ -101,11 +101,56 @@ textarea:focus{border-color:var(--blue)}
 .note{font-size:.87rem;color:var(--muted);font-family:system-ui,sans-serif}
 .credit-card{text-align:center;padding:clamp(1.5rem,5vw,4rem)}.credit-card h3{font-size:clamp(1.7rem,4vw,3rem);margin:.3rem}.credit-card .name{font-size:clamp(1.6rem,4vw,2.5rem);color:var(--accent);margin:1rem 0 .2rem}.credit-card p{margin:.15rem}
 .toast{position:fixed;left:50%;bottom:1.1rem;transform:translate(-50%,150%);background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:.65rem .9rem;box-shadow:var(--shadow);z-index:50;font-family:system-ui,sans-serif;font-size:.82rem;transition:transform .25s}.toast.show{transform:translate(-50%,0)}
-.mobile-head{display:none}
+.mobile-head{display:none}.print-header{display:none}
 @media(max-width:900px){
-  .app-shell{display:block}.sidebar{position:sticky;height:auto;top:0;padding:.65rem;display:block}.brand,.progress-box,.side-actions{display:none}.mobile-head{display:flex;justify-content:space-between;align-items:center;color:#fff;padding:.2rem .25rem .55rem}.mobile-head strong{font-size:.9rem}.mobile-head span{font-family:system-ui,sans-serif;font-size:.74rem}.mobile-tools{display:flex;align-items:center;gap:.55rem}.mobile-tools button{border:1px solid rgba(255,255,255,.32);background:transparent;color:#fff;border-radius:8px;width:30px;height:30px;display:grid;place-items:center;padding:0}.nav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));overflow:visible;padding-bottom:.2rem}.nav button{min-width:0;display:flex;justify-content:center;padding:.48rem}.nav button .nav-label{display:none}.main{padding:1rem}.topbar{margin-bottom:.45rem}.card.half,.card.third,.card.two-thirds{grid-column:span 12}.hero{min-height:auto}.hero-card{padding:1.4rem}.hero-card::after{display:none}.evidence-tray{right:.6rem;bottom:.6rem;max-width:calc(100vw - 1.2rem)}
+  .app-shell{display:block}.sidebar{position:sticky;height:auto;top:0;padding:.65rem;display:block}.brand,.progress-box,.side-actions{display:none}.mobile-head{display:flex;justify-content:space-between;align-items:center;color:#fff;padding:.2rem .25rem .55rem}.mobile-head strong{font-size:.9rem}.mobile-head span{font-family:system-ui,sans-serif;font-size:.74rem}.mobile-tools{display:flex;align-items:center;gap:.55rem}.mobile-tools button{border:1px solid rgba(255,255,255,.32);background:transparent;color:#fff;border-radius:8px;width:30px;height:30px;display:grid;place-items:center;padding:0}.mobile-tools .mobile-print{width:auto;min-width:42px;padding:0 .45rem;font-size:.68rem;font-weight:750}.nav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));overflow:visible;padding-bottom:.2rem}.nav button{min-width:0;display:flex;justify-content:center;padding:.48rem}.nav button .nav-label{display:none}.main{padding:1rem}.topbar{margin-bottom:.45rem}.card.half,.card.third,.card.two-thirds{grid-column:span 12}.hero{min-height:auto}.hero-card{padding:1.4rem}.hero-card::after{display:none}.evidence-tray{right:.6rem;bottom:.6rem;max-width:calc(100vw - 1.2rem)}
 }
 @media(max-width:560px){.time-event{grid-template-columns:1fr}.source-entry dl{grid-template-columns:1fr}.hero h1{font-size:2.4rem}.topbar{align-items:flex-start;flex-direction:column}.evidence-tray{font-size:.9rem}}
+
+@page{size:A4;margin:14mm 12mm 16mm}
+@media print{
+  html,body{background:#fff!important;color:#000!important;font-size:10.5pt;overflow:visible!important}
+  body{line-height:1.45}
+  .app-shell{display:block!important;min-height:0!important}
+  .sidebar,.topbar,.toast,.skip{display:none!important}
+  .main{padding:0!important;max-width:none!important}
+  .print-header{display:block!important;border-bottom:2px solid #222;margin:0 0 8mm;padding:0 0 5mm}
+  .print-header .school-line{font-family:Arial,sans-serif;font-size:8.5pt;letter-spacing:.08em;font-weight:700}
+  .print-header h1{font-size:25pt;line-height:1.05;margin:2mm 0 1mm}
+  .print-header p{margin:0;font-family:Arial,sans-serif;font-size:10pt}
+  .panel,.panel.active{display:block!important;max-width:none!important;margin:0!important;animation:none!important}
+  .panel:not(#home){break-before:page;page-break-before:always}
+  .hero{min-height:0!important;display:block!important}
+  .hero-card{padding:8mm!important;box-shadow:none!important;border-radius:4mm!important;background:#fff!important}
+  .hero-card::after{display:none!important}
+  .hero h1{font-size:30pt!important;line-height:1.02!important}
+  .hero h1 span{font-size:.5em!important}
+  .grid{display:grid!important;grid-template-columns:1fr!important;gap:5mm!important}
+  .card,.card.half,.card.third,.card.two-thirds{grid-column:1!important;box-shadow:none!important;background:#fff!important;border:1px solid #888!important;border-radius:3mm!important;padding:5mm!important}
+  .section-head{margin:0 0 6mm;padding-bottom:4mm;break-after:avoid;page-break-after:avoid}
+  .section-head h2{font-size:22pt!important}
+  .primary,.secondary,.evidence-btn,.veil{display:none!important}
+  .context-cover img{filter:none!important}
+  .source-figure img{max-height:180mm!important;object-fit:contain!important;background:#fff!important}
+  textarea{overflow:visible!important;resize:none!important;min-height:18mm!important;background:#fff!important;color:#000!important;border:1px solid #777!important;box-shadow:none!important}
+  .word-count{color:#444!important}
+  .claim-builder{background:#fff!important;color:#000!important;border:1px solid #777!important}
+  .callout,.ethics{background:#fff!important;color:#000!important;border:1px solid #999!important;border-left:4px solid #555!important}
+  .term{border-bottom:0!important}
+  .term::after{display:none!important}
+  .evidence-tray{position:static!important;display:block!important;max-width:none!important;margin:10mm 0 0!important;background:#fff!important;color:#000!important;border:2px solid #444!important;border-radius:3mm!important;box-shadow:none!important;overflow:visible!important;break-before:page;page-break-before:always}
+  .evidence-tray[hidden]{display:none!important}
+  .evidence-tray summary{padding:5mm!important;border-bottom:1px solid #777!important;color:#000!important}
+  .tray-body{max-height:none!important;overflow:visible!important;padding:5mm!important}
+  .chip{display:block!important;color:#000!important;background:#fff!important;border:1px solid #999!important;border-radius:2mm!important;margin:2mm 0!important;padding:2.5mm!important}
+  .chip button{display:none!important}
+  .card,.source-entry,.time-event,.classify-row,.seq-item,.reveal{break-inside:avoid;page-break-inside:avoid}
+  .seq-item,.choice{color:#000!important;background:#fff!important;box-shadow:none!important}
+  a{color:#000!important;text-decoration:underline!important}
+  details{display:block!important}
+  details>summary{list-style:none}
+  details>summary::-webkit-details-marker{display:none}
+}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -113,8 +158,8 @@ textarea:focus{border-color:var(--blue)}
 <a class="skip" href="#main">Μετάβαση στο κύριο περιεχόμενο</a>
 <div class="app-shell">
 <aside class="sidebar" aria-label="Πλοήγηση εφαρμογής">
-  <div class="brand"><small>Ιστορία Γ΄ Γυμνασίου · 1ο Γυμνάσιο Πυλαίας</small><strong>Ίχνη που δεν σβήνουν</strong></div>
-  <div class="mobile-head"><strong>Ίχνη που δεν σβήνουν</strong><span class="mobile-tools"><span id="mobileProgress">0%</span><button id="resetMobileBtn" aria-label="Αρχικοποίηση εφαρμογής" title="Αρχικοποίηση εφαρμογής">↺</button></span></div>
+  <div class="brand"><small>ΙΣΤΟΡΙΑ Γ΄ ΓΥΜΝΑΣΙΟΥ · <span class="school-index">1ο</span> ΓΥΜΝΑΣΙΟ ΠΥΛΑΙΑΣ</small><strong>Ίχνη που δεν σβήνουν</strong></div>
+  <div class="mobile-head"><strong>Ίχνη που δεν σβήνουν</strong><span class="mobile-tools"><span id="mobileProgress">0%</span><button class="mobile-print" id="printMobileBtn" aria-label="Εκτύπωση ή αποθήκευση σε PDF" title="Εκτύπωση / Αποθήκευση PDF">PDF</button><button id="resetMobileBtn" aria-label="Αρχικοποίηση εφαρμογής" title="Αρχικοποίηση εφαρμογής">↺</button></span></div>
   <div class="progress-box"><div class="progress-meta"><span>Πρόοδος φακέλου</span><strong id="progressText">0%</strong></div><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div></div>
   <nav class="nav" id="nav">
     <button class="active" data-panel="home"><span class="num">⌂</span><span class="nav-label">Αρχικός φάκελος</span></button>
@@ -127,9 +172,10 @@ textarea:focus{border-color:var(--blue)}
     <button data-panel="sources"><span class="num">Π</span><span class="nav-label">Πηγές</span></button>
     <button data-panel="credits"><span class="num">Σ</span><span class="nav-label">Συντελεστής</span></button>
   </nav>
-  <div class="side-actions"><button id="resetBtn">Αρχικοποίηση εφαρμογής</button></div>
+  <div class="side-actions"><button id="printBtn">Εκτύπωση / Αποθήκευση PDF</button><button id="resetBtn">Αρχικοποίηση εφαρμογής</button></div>
 </aside>
 <main class="main" id="main">
+  <header class="print-header"><div class="school-line">ΙΣΤΟΡΙΑ Γ΄ ΓΥΜΝΑΣΙΟΥ · 1ο ΓΥΜΝΑΣΙΟ ΠΥΛΑΙΑΣ</div><h1>Ίχνη που δεν σβήνουν</h1><p>Ερευνητικός φάκελος για το Ολοκαύτωμα</p></header>
   <div class="topbar"><div class="eyebrow">Ερευνητικός φάκελος τεκμηρίων</div><div class="autosave" id="saveState">Οι απαντήσεις αποθηκεύονται αυτόματα</div></div>
 
   <section class="panel active hero" id="home">
@@ -361,6 +407,30 @@ textarea:focus{border-color:var(--blue)}
   }
   function val(id,min){return ((state.fields[id]||'').trim().split(/\s+/).filter(Boolean).length>=min)}
   updateProgress();
+
+  let printSnapshot=null;
+  function preparePrint(){
+    if(printSnapshot) return;
+    printSnapshot={
+      textareas:$$('textarea').map(el=>({el,height:el.style.height,overflow:el.style.overflow})),
+      details:$$('details').map(el=>({el,open:el.open}))
+    };
+    printSnapshot.textareas.forEach(({el})=>{el.style.height='auto';el.style.height=el.scrollHeight+'px';el.style.overflow='visible';});
+    printSnapshot.details.forEach(({el})=>{el.open=true;});
+  }
+  function restoreAfterPrint(){
+    if(!printSnapshot) return;
+    printSnapshot.textareas.forEach(({el,height,overflow})=>{el.style.height=height;el.style.overflow=overflow;});
+    printSnapshot.details.forEach(({el,open})=>{el.open=open;});
+    printSnapshot=null;
+  }
+  function printApp(){
+    preparePrint();
+    requestAnimationFrame(()=>setTimeout(()=>window.print(),80));
+  }
+  window.addEventListener('beforeprint',preparePrint);
+  window.addEventListener('afterprint',restoreAfterPrint);
+  $('#printBtn').addEventListener('click',printApp); $('#printMobileBtn').addEventListener('click',printApp);
 
   function resetApp(){if(confirm('Θα διαγραφούν όλες οι απαντήσεις και τα επιλεγμένα τεκμήρια. Συνέχεια;')){localStorage.removeItem(STORE);location.reload();}}
   $('#resetBtn').addEventListener('click',resetApp); $('#resetMobileBtn').addEventListener('click',resetApp);
